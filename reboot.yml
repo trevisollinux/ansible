@@ -1,0 +1,6 @@
+---
+- hosts: ubuntu
+  tasks:
+     - name: reboot
+       command: /sbin/shutdown -r now
+       become_user: root

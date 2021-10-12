@@ -1,0 +1,10 @@
+---
+- hosts: mikrotiks_teste
+  connection: network_cli
+  gather_facts: false
+  tasks:
+
+  - name: copiar um arquivo de leases de dhcp para a home do ansible
+    ansible.netcommon.net_get:
+      src: lease.txt
+      dest: /home/ansible/lease.txt

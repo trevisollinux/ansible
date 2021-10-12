@@ -1,0 +1,24 @@
+---
+- hosts: ubuntu_andre 
+  tasks:
+    - name: instala o zabbix-agent
+      apt:
+        name: 
+          - zabbix-agent
+        state: present
+      become: yes 
+
+
+    - name: Copia Zabbix-agentd.conf para máquina local
+      ansible.builtin.copy:
+        src: arquivos/zabbix_agentd.conf
+        dest: /etc/zabbix/zabbix_agentd.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+      become: yes
+ 
+    - name: restart zabbix-agent
+      command: systemctl restart zabbix-agent
+      become: yes

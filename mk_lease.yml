@@ -1,0 +1,14 @@
+---
+- hosts: mikrotiks_teste
+  connection: network_cli
+  gather_facts: false
+  tasks:
+
+  - name: Mikrotik - gera arquivo lease
+    routeros_command:
+      commands:
+        - /ip dhcp-server lease print file=(\"lease_\".[/system identity get name].\"_{{ inventory_hostname }}.txt\")
+  - name: Mikrotik - envia via ftp        
+    routeros_command:
+      commands:
+        - /tool fetch address=your_server_ip src-path=(\"lease_\".[/system identity get name].\"_{{ inventory_hostname }}.txt\") user=yourusername password=yourpasswd upload=yes port=yourport mode=ftp dst-path=(\"/yourdestination_\".[/system identity get name].\"_{{ inventory_hostname }}.txt\")      

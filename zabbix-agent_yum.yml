@@ -1,0 +1,10 @@
+---
+- hosts: ubuntu
+  tasks:
+    - name: instala o zabbix-agent
+      yum:
+        name: 
+          - python3-apt      
+          - zabbix-agent
+        state: present
+      become: yes  

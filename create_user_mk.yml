@@ -1,0 +1,9 @@
+---
+- hosts: mikrotiks
+  connection: network_cli
+  gather_facts: false
+  tasks:
+
+  - name: criar usuários no mikrotik
+    routeros_command:  
+      commands:  /user add name=userread group=read password=typehereapasswd     

@@ -1,0 +1,22 @@
+---
+- hosts: ubuntu_andre 
+  tasks:
+     - name: libera porta zabbix-agent tcp
+       become: true
+       community.general.ufw:
+         rule: allow
+         port: 10050:10051
+         proto: tcp
+
+     - name: libera porta zabbix-agent udp
+       become: true
+       community.general.ufw:
+         rule: allow
+         port: 10050:10051
+         proto: udp
+
+     - name: reload firewall
+       become: true
+       community.general.ufw:
+         state: reloaded
+         

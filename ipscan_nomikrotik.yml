@@ -1,0 +1,10 @@
+---
+- hosts: mikrotiks
+  connection: network_cli
+  gather_facts: false
+  tasks:
+
+  - name: scanneia a rede dos mks
+    routeros_command:  
+      commands:  /ip dhcp-server lease print file=lease
+    register: routeros_resources  
